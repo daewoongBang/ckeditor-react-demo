@@ -1,6 +1,7 @@
 import React from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+import Font from '@ckeditor/ckeditor5-font/src/font';
 
 const Editor = () => {
   return (
@@ -23,13 +24,39 @@ const Editor = () => {
           console.log('Focus', editor);
         }}
         config={{
-          language: 'de',
-          ckfinder: {
-            // Upload the images to the server using the CKFinder QuickUpload command
-            // You have to change this address to your server that has the ckfinder php connector
-            uploadUrl:
-              'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
+          plugins: [Font],
+          toolbar: ['fontSize', 'fontColor', 'FontBackgroundColor'],
+          fontSize: {
+            options: [
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              23,
+              25,
+              27,
+              29,
+              31,
+              33,
+              35
+            ]
           }
+          //   language: 'de',
+          //   ckfinder: {
+          //     // Upload the images to the server using the CKFinder QuickUpload command
+          //     // You have to change this address to your server that has the ckfinder php connector
+          //     uploadUrl:
+          //       'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
+          //   }
         }}
       />
     </div>
