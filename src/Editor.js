@@ -1,7 +1,27 @@
 import React from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
+
+// NOTE: Use the editor from source (not a build)!
+// 설치되어 있다면 삭제 (yarn remove @ckeditor/ckeditor5-build-classic)
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+
+import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
+import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
+import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import Font from '@ckeditor/ckeditor5-font/src/font';
+
+const editorConfiguration = {
+  plugins: [Essentials, Bold, Italic, Paragraph, Font],
+  toolbar: [
+    'bold',
+    'italic',
+    '|',
+    'fontSize',
+    'fontColor',
+    'fontBackgroundColor'
+  ]
+};
 
 const Editor = () => {
   return (
@@ -23,41 +43,14 @@ const Editor = () => {
         onFocus={(event, editor) => {
           console.log('Focus', editor);
         }}
-        config={{
-          plugins: [Font],
-          toolbar: ['fontSize', 'fontColor', 'FontBackgroundColor'],
-          fontSize: {
-            options: [
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16,
-              17,
-              18,
-              19,
-              20,
-              21,
-              23,
-              25,
-              27,
-              29,
-              31,
-              33,
-              35
-            ]
-          }
-          //   language: 'de',
-          //   ckfinder: {
-          //     // Upload the images to the server using the CKFinder QuickUpload command
-          //     // You have to change this address to your server that has the ckfinder php connector
-          //     uploadUrl:
-          //       'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
-          //   }
-        }}
+        //   language: 'de',
+        //   ckfinder: {
+        //     // Upload the images to the server using the CKFinder QuickUpload command
+        //     // You have to change this address to your server that has the ckfinder php connector
+        //     uploadUrl:
+        //       'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
+        //   }
+        config={editorConfiguration}
       />
     </div>
   );
