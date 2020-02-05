@@ -126,7 +126,7 @@ const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 
 **Essentials**  
 `@ckeditor/ckeditor5-essentials`  
-Essentials은 다음과 같은 필수 편집 기능을 포함하고 있는 plugin이다.
+Essentials은 다음과 같은 필수 편집 기능을 포함하고 있는 plugin
 
 - Clipboard,
 - Enter,
@@ -134,12 +134,22 @@ Essentials은 다음과 같은 필수 편집 기능을 포함하고 있는 plugi
 - Typing,
 - Undo.
 
+**Heading**  
+`@ckeditor/ckeditor5-heading`
+헤더 관련 plugin
+
 **Font**  
 `@ckeditor/ckeditor5-font`
+Font 관련 plugin
+
+- FontFamily
+- FontSize
+- FontColor
+- FontBackgroundColor
 
 <hr>
 
 **reference:**
 
-- ckeditor Doc  
+- CKEditor Doc  
   <https://ckeditor.com/docs/ckeditor5/latest/features/index.html>
