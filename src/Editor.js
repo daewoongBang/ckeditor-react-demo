@@ -11,19 +11,47 @@ import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import Font from '@ckeditor/ckeditor5-font/src/font';
+import Link from '@ckeditor/ckeditor5-link/src/link';
+import List from '@ckeditor/ckeditor5-list/src/list';
+import Image from '@ckeditor/ckeditor5-image/src/image';
+import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 
 const editorConfiguration = {
-  plugins: [Essentials, Paragraph, Heading, Bold, Italic, Font],
+  plugins: [
+    Essentials,
+    Paragraph,
+    Heading,
+    Bold,
+    Italic,
+    Font,
+    Link,
+    List,
+    Image,
+    ImageUpload,
+    CKFinder
+  ],
   toolbar: [
     'heading',
     '|',
     'bold',
     'italic',
+    'link',
+    'bulletedList',
+    'numberedList',
     '|',
     'fontSize',
     'fontColor',
-    'fontBackgroundColor'
-  ]
+    'fontBackgroundColor',
+    '|',
+    'imageUpload',
+    'ckfinder'
+  ],
+  ckfinder: {
+    // Upload the images to the server using the CKFinder QuickUpload command.
+    uploadUrl: 'http://localhost:8080//file_upload',
+    headers: []
+  }
 };
 
 const Editor = () => {
@@ -46,13 +74,6 @@ const Editor = () => {
         onFocus={(event, editor) => {
           console.log('Focus', editor);
         }}
-        //   language: 'de',
-        //   ckfinder: {
-        //     // Upload the images to the server using the CKFinder QuickUpload command
-        //     // You have to change this address to your server that has the ckfinder php connector
-        //     uploadUrl:
-        //       'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
-        //   }
         config={editorConfiguration}
       />
     </div>

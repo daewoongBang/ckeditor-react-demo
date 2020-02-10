@@ -147,6 +147,18 @@ Font 관련 plugin
 - FontColor
 - FontBackgroundColor
 
+**Link**  
+`@ckeditor/ckeditor5-link`
+
+**List**  
+`@ckeditor/ckeditor5-list`
+
+**Image**  
+`@ckeditor/ckeditor5-image`
+
+**ImageUpload**  
+`@ckeditor/ckeditor5-ckfinder`
+
 <hr>
 
 **reference:**
