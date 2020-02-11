@@ -135,11 +135,11 @@ Essentials은 다음과 같은 필수 편집 기능을 포함하고 있는 plugi
 - Undo.
 
 **Heading**  
-`@ckeditor/ckeditor5-heading`
+`@ckeditor/ckeditor5-heading`  
 헤더 관련 plugin
 
 **Font**  
-`@ckeditor/ckeditor5-font`
+`@ckeditor/ckeditor5-font`  
 Font 관련 plugin
 
 - FontFamily
