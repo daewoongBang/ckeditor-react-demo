@@ -159,6 +159,65 @@ Font 관련 plugin
 **ImageUpload**  
 `@ckeditor/ckeditor5-ckfinder`
 
+### Spring File Upload Method Sample Code
+
+```java
+@RequestMapping(value = "/file_upload", method = RequestMethod.POST)
+public void procFileUpload(HttpServletRequest request,
+                            HttpServletResponse response,
+                            MultipartHttpServletRequest multiFile) throws IOException {
+        JsonObject json = new JsonObject();
+        PrintWriter printWriter = null;
+        OutputStream out = null;
+
+        MultipartFile file = multiFile.getFile("upload");
+
+        if (file != null) {
+            if (file.getSize() > 0) {
+                try {
+                    // fileName(한글깨짐 방지 처리)
+                    String fileName = new String(file.getOriginalFilename().getBytes("8859_1"), "UTF-8");
+                    byte[] bytes = file.getBytes();
+                    // upload 경로 설정
+                    String uploadPath = request.getServletContext().getRealPath("/img");
+                    File uploadFile = new File(uploadPath);
+                    if (!uploadFile.exists()) {
+                        uploadFile.mkdirs();
+                    }
+
+                    // UUID 생성
+                    String uuid = UUID.randomUUID().toString();
+                    String uploadUUIDPath = uploadPath + "/" + uuid + "_" + fileName;
+                    out = new FileOutputStream(new File(uploadUUIDPath));
+                    out.write(bytes);
+
+                    printWriter = response.getWriter();
+                    response.setContentType("text/html");
+                    String fileUrl = request.getContextPath() + "/img/" + uuid + "_" + fileName;
+
+                    // json 데이터로 등록 (아래 형태로 리턴)
+                    // {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
+                    json.addProperty("uploaded", 1);
+                    json.addProperty("fileName", fileName);
+                    json.addProperty("url", fileUrl); // 유효한 이미지 링크 던지기
+
+                    printWriter.println(json);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (out != null) {
+                        out.close();
+                    }
+                    if (printWriter != null) {
+                        printWriter.close();
+                    }
+                }
+            }
+        }
+    }
+```
+
 <hr>
 
 **reference:**
