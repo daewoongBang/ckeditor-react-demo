@@ -16,6 +16,7 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
+import Clipboard from '@ckeditor/ckeditor5-clipboard/src/clipboard';
 
 const editorConfiguration = {
   plugins: [
@@ -29,7 +30,8 @@ const editorConfiguration = {
     List,
     Image,
     ImageUpload,
-    CKFinder
+    CKFinder,
+    Clipboard
   ],
   toolbar: [
     'heading',
@@ -63,6 +65,23 @@ const Editor = () => {
         onInit={editor => {
           // editor를 저장해서 원할 때 쓸 수 있다.
           console.log('Editor is ready to use!', editor);
+          // drag & drop 방지
+          editor.editing.view.document.on(
+            'drop',
+            (evt, data) => {
+              evt.stop();
+              data.preventDefault();
+            },
+            { priority: 'high' }
+          );
+          editor.editing.view.document.on(
+            'dragover',
+            (evt, data) => {
+              evt.stop();
+              data.preventDefault();
+            },
+            { priority: 'high' }
+          );
         }}
         onChange={(event, editor) => {
           const data = editor.getData();
